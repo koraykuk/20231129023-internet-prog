@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Question>
+@{
+	ViewData["Title"] = "Sorular";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sorular</title>
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container mt-5">
+		<!-- Sağ üstteki Soru Ekle butonu -->
+		<div class="d-flex justify-content-between align-items-center mb-4">
+			<h1 class="text-primary">Sorular</h1>
+			<a href="/Questions/Create" class="btn btn-success">Soru Ekle</a>
+		</div>
+
+		<!-- Soruların listesi -->
+		<div class="list-group">
+			@foreach (var question in Model)
+			{
+				<div class="list-group-item">
+					<!-- UserId gösterimi -->
+					<a href="/Answers/Details/@question.Id">
+						<small class="text-secondary">Soruyu soran: <strong>@question.UserId</strong></small>
+						<h5 class="mt-2">@question.QuestionTitle</h5>
+						<p class="text-muted">@question.QuestionText</p>
+						<small class="text-secondary">Tarih: @question.Date.ToString("dd.MM.yyyy HH:mm")</small>
+					</a>
+				</div>
+			}
+		</div>
+	</div>
+
+	<!-- Bootstrap JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
